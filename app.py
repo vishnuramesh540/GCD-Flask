@@ -7,10 +7,13 @@ from dataframe import gdp_df
 
 # ---------------------------------------------DASH APP ---------------------------------------------------------------
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__, meta_tags=[{'name': 'viewport',
+                                      'content': 'width=device-width, '
+                                                 'initial-scale=1.0, '
+                                                 'maximum-scale=1.2, '
+                                                 'minimum-scale=0.5,'}])
 
 app.title = "GDP Graph"
-
 
 app.layout = html.Div([
     dbc.Row([
@@ -43,7 +46,7 @@ def gdp_graph(tab):
 
     elif tab == 'inr':
         figure = px.line(gdp_df, x='year', y='gdp_inr', markers=True,
-                         labels={'year': 'Year', 'gdp_inr': 'GDP in billion INR'},)
+                         labels={'year': 'Year', 'gdp_inr': 'GDP in billion INR'}, )
 
         return [
             html.Div(children=[dcc.Graph(figure=figure)])
@@ -51,4 +54,4 @@ def gdp_graph(tab):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host='0.0.0.0')
