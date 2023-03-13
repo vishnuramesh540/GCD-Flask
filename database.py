@@ -9,7 +9,7 @@ connection = mysql.connect(host="localhost",
 
 cursor = connection.cursor()
 
-data = pd.read_excel('D:/NCG-Assignment/gdp/src/resources/gdp.xlsx')
+data = pd.read_excel('gdp.xlsx')
 data.replace(np.nan, 0000)
 columns = list(data.columns)
 year_column = columns[0]
